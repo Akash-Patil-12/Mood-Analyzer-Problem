@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MoodAnalyser
+namespace MoodAnalyserProblem
 {
-    class MoodAnalyser
+    public class MoodAnalyser
     {
+        /// <summary>
+        /// method return sad
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public string AnalyserMood(string message)
         {
-            if (message.Contains("happy") || message.Contains("Happy" ))
+            if (message.Contains("Sad") || message.Contains("sad" ))
             {
-                return "happy";
+                return "Sad";
             }
-            return "sad";
+            return "";
         }
     }
 }
