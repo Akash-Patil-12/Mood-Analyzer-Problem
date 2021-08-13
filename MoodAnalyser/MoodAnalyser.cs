@@ -7,17 +7,17 @@ namespace MoodAnalyserProblem
     public class MoodAnalyser
     {
         /// <summary>
-        /// method return sad
+        /// method return Sad or Happy
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
         public string AnalyserMood(string message)
         {
-            if (message.Contains("Sad") || message.Contains("sad" ))
+            if (message.Contains("Sad"))
             {
                 return "Sad";
             }
-            return "";
+            return "Happy";
         }
     }
 }
