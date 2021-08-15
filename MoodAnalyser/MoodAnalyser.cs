@@ -6,10 +6,10 @@ namespace MoodAnalyserProblem
 {
     public class MoodAnalyser
     {
-        string message;
+        public string message;
         public MoodAnalyser()
         {
-            this.message = "I am in any mood";
+           
         }
         public MoodAnalyser(string message)
         {
@@ -22,11 +22,24 @@ namespace MoodAnalyserProblem
         /// <returns></returns>
         public string AnalyserMood()
         {
-            if (message.Contains("Sad"))
+            try
             {
-                return "Sad";
+                if (message == null)
+                {
+                    throw new Exception();
+                }
+                message = this.message.ToLower();
+                if (message.Contains("sad"))
+                {
+                    return "Sad";
+                }
+                else
+                    return "Happy";
             }
-            return "Happy";
+            catch (Exception)
+            {
+                return "Happy";
+            }
         }
     }
 }

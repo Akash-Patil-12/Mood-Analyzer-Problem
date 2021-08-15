@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyserProblem;
+using System;
 
 namespace MoodAnalyserTesting
 {
@@ -25,6 +26,16 @@ namespace MoodAnalyserTesting
             MoodAnalyser moodAnalyser = new MoodAnalyser("I am in any Mood");
             string actual = moodAnalyser.AnalyserMood();
             Assert.AreEqual("Happy", actual);
+        }
+        [TestMethod]
+        ///<summary>
+        ///Test 2.1 If message is null throw exception and return Happy
+        ///<summary>
+        public void GivenNullMessage_WhenAnalyseShouldReturnException()
+        {
+            MoodAnalyser moodAnalyser = new MoodAnalyser();
+            string actual=moodAnalyser.AnalyserMood();
+            Assert.AreEqual("Happy",actual);
         }
     }   
 }
