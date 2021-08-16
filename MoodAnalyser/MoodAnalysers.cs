@@ -1,22 +1,23 @@
-﻿using System;
+﻿using MoodAnalyser;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MoodAnalyserProblem
 {
-    public class MoodAnalyser
+    public class MoodAnalysers
     {
         public string message;
-        public MoodAnalyser()
+        public MoodAnalysers()
         {
            
         }
-        public MoodAnalyser(string message)
+        public MoodAnalysers(string message)
         {
             this.message = message;
         }
         /// <summary>
-        /// method return Sad or Happy
+        /// method return Sad or Happy or if message is empty or null then throw specific exception
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
@@ -26,7 +27,11 @@ namespace MoodAnalyserProblem
             {
                 if (message == null)
                 {
-                    throw new Exception();
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MOOD, "mood is null");
+                }
+                if (message.Length == 0)
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_MOOD, "mood is empty");
                 }
                 message = this.message.ToLower();
                 if (message.Contains("sad"))
@@ -36,10 +41,12 @@ namespace MoodAnalyserProblem
                 else
                     return "Happy";
             }
-            catch (Exception)
+            catch (MoodAnalyserException e)
             {
+                Console.WriteLine(e.Message);
                 return "Happy";
             }
+            
         }
     }
 }
