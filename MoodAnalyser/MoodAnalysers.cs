@@ -43,7 +43,7 @@ namespace MoodAnalyserProblem
             }
             catch (MoodAnalyserException e)
             {
-                return e.Message;
+                return e.type.ToString();
             }
             
         }
