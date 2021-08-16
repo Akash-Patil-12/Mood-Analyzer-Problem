@@ -6,8 +6,8 @@ namespace MoodAnalyserProblem
     {
         static void Main(string[] args)
         {
-            MoodAnalysers moodAnalyser = new MoodAnalysers();
-            Console.WriteLine(moodAnalyser.AnalyserMood());
+            MoodAnalysers moodAnalyser = new MoodAnalysers("");
+            Console.WriteLine("Mood : "+moodAnalyser.AnalyserMood());
         }
     }
 }

@@ -43,8 +43,7 @@ namespace MoodAnalyserProblem
             }
             catch (MoodAnalyserException e)
             {
-                Console.WriteLine(e.Message);
-                return "Happy";
+                return e.Message;
             }
             
         }
