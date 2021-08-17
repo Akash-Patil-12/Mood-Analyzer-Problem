@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoodAnalyserProblem;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -97,6 +98,36 @@ namespace MoodAnalyser
                 return mood.ToString();
             }
             catch (MoodAnalyserException e )
+            {
+                return e.Message;
+            }
+        }
+        /// <summary>
+        /// Set message and Fieldname dynamically if it present else it through exception
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="fieldName"></param>
+        /// <returns></returns>
+         public static string SetFieldDynamic(string message, string fieldName)
+        {
+            try
+            {
+                MoodAnalysers moodAnalyser = new MoodAnalysers();
+                Type type = typeof(MoodAnalysers);
+                FieldInfo fieldInfo = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Instance);
+                if (fieldInfo == null)
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_FIELD, "No such field");
+
+                }
+                if (message == null)
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MOOD, "Message should not be null");
+                }
+                fieldInfo.SetValue(moodAnalyser, message);
+                return moodAnalyser.message;
+            }
+            catch (MoodAnalyserException e)
             {
                 return e.Message;
             }

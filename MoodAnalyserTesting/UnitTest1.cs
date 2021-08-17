@@ -130,5 +130,35 @@ namespace MoodAnalyserTesting
             string actual = MoodAnalyserReflector.InvokeAnalyseMood("I am happy", "Mood");
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod]
+        /// <summary>
+        /// TC-7.1-Change mood dynamically.
+        /// </summary>
+        public void GivenSetMoodDynamically_ShouldReturnHappy()
+        {
+            string expected = "Happy";
+            string actual = MoodAnalyserReflector.SetFieldDynamic("Happy", "message");
+            expected.Equals(actual);
+        }
+        [TestMethod]
+        /// <summary>
+        /// TC-7.2 Given field name improper should return No such field
+        /// </summary>
+        public void GivenFieldNameImproper_ShouldReturnMoodAnaysisException()
+        {
+            string expected = "No such field";
+            string actual = MoodAnalyserReflector.SetFieldDynamic("Happy", "msg");
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        /// <summary>
+        /// TC-7.3 Change message dynamically
+        /// </summary>
+        public void ChangeMeassageDynamically_ShouldReturnMessage()
+        {
+            string expected = "Message should not be null";
+            string actual = MoodAnalyserReflector.SetFieldDynamic(null, "message");
+            Assert.AreEqual(expected, actual);
+        }
     }   
 }
