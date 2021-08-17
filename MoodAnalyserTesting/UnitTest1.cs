@@ -55,11 +55,18 @@ namespace MoodAnalyserTesting
         public void GivenClassNameImproper_ShouldReturnMoodAnalysisException()
         {
             string expected = "No such class found";
-
             object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyse", "Mood");
-
             Assert.AreEqual(expected, actual);
-
+        }
+        /// <summary>
+        /// TC-4.3 Throw No such method  exception.
+        /// </summary>
+        [TestMethod]
+        public void GivenConstructorNameImproper_ShouldReturnMoodAnalysisException()
+        {
+            string expected = "No such method";
+            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "Mood");
+            Assert.AreEqual(expected, actual);
         }
     }   
 }
