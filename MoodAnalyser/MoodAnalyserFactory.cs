@@ -18,23 +18,27 @@ namespace MoodAnalyser
         {
             string pattern = @"." + constructorName + "";
             Match result = Regex.Match(className, pattern);
-            if (result.Success)
+            try
             {
-                try
+                if (result.Success)
                 {
+                    Console.WriteLine("Equal");
                     Assembly executing = Assembly.GetExecutingAssembly();
                     Type moodAnalyseType = executing.GetType(className);
                     return Activator.CreateInstance(moodAnalyseType);
                 }
-                catch (MoodAnalyserException)
+                else
                 {
-                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class not found");
+                    Console.WriteLine("else");
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CONSTRUCTOR, "No such class found");
                 }
             }
-            else
+            catch (MoodAnalyserException e)
             {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Constructor not found");
+                return e.Message;
             }
+
+
         }
     }
 }

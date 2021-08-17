@@ -48,5 +48,18 @@ namespace MoodAnalyserTesting
             object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers");
             expected.Equals(actual);
         }
+        /// <summary>
+        /// TC-4.2 Throw No such class found exception.
+        /// </summary>
+        [TestMethod]
+        public void GivenClassNameImproper_ShouldReturnMoodAnalysisException()
+        {
+            string expected = "No such class found";
+
+            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyse", "Mood");
+
+            Assert.AreEqual(expected, actual);
+
+        }
     }   
 }

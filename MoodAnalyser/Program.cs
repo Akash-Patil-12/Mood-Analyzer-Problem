@@ -8,6 +8,9 @@ namespace MoodAnalyserProblem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome in Mood Analyser Problem");
+            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyse", "Mood");
+            Console.WriteLine(actual);
+
         }
     }
 }
