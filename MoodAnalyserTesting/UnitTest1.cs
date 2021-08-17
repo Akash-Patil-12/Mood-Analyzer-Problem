@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MoodAnalyser;
 using MoodAnalyserProblem;
 using System;
 
@@ -36,6 +37,16 @@ namespace MoodAnalyserTesting
             MoodAnalysers moodAnalysers = new MoodAnalysers();
             string actual = moodAnalysers.AnalyserMood();
             Assert.AreEqual("NULL_MOOD", actual);
+        }       
+        [TestMethod]
+        /// <summary>
+        /// TC-4.1 Returns the MoodAnalysers object
+        /// </summary>
+        public void GivenMoodAnalyserReflection_ShouldReturnObject()
+        {
+            object expected = new MoodAnalysers();
+            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers");
+            expected.Equals(actual);
         }
     }   
 }
