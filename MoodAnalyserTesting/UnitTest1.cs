@@ -75,7 +75,7 @@ namespace MoodAnalyserTesting
         public void GivenParameterizedConstructor_ShouldReturnObject()
         {
             object expected = new MoodAnalysers("I am Parameter constructor");
-            object actual = MoodAnalyserFactory.MoodAnalyserParameterizedConstructor("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers", "I am Parameter constructor");
+            object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers", "I am Parameter constructor");
             expected.Equals(actual);
         }
         /// <summary>
@@ -87,7 +87,7 @@ namespace MoodAnalyserTesting
             string expected = "No such class found";
             try
             {
-                object actual = MoodAnalyserFactory.MoodAnalyserParameterizedConstructor("MoodAnalyser.MoodAnalyser", "MoodAnalyser", "I am Parameter constructor");
+                object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyser.MoodAnalyser", "MoodAnalyser", "I am Parameter constructor");
             }
             catch (MoodAnalyserException e)
             {
@@ -103,7 +103,7 @@ namespace MoodAnalyserTesting
             string expected = "No such method";
             try
             {
-                object actual = MoodAnalyserFactory.MoodAnalyserParameterizedConstructor("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "I am Parameter constructor");
+                object actual = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", "I am Parameter constructor");
             }
             catch (MoodAnalyserException e)
             {
