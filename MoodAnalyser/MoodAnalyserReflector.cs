@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace MoodAnalyser
 {
-    public class MoodAnalyserFactory
+    public class MoodAnalyserReflector
     {
         /// <summary>
         /// Return object according to given parameter
@@ -15,7 +15,7 @@ namespace MoodAnalyser
         /// <param name="constructorName"></param>
         /// <param name="message"></param>
         /// <returns></returns>
-        public static object CreateMoodAnalyse(string className, string constructorName, string message="")
+        public static object CreateMoodAnalyse(string className, string constructorName, string message = "")
         {
             if (message.Length == 0)
             {
@@ -72,6 +72,33 @@ namespace MoodAnalyser
                 {
                     return e;
                 }
+            }
+
+        }
+        /// <summary>
+        /// If method found return message
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="methodName"></param>
+        /// <returns></returns>
+        public static string InvokeAnalyseMood(string message, string methodName)
+        {
+            try
+            {
+                Type type = Type.GetType("MoodAnalyserProblem.MoodAnalysers");
+                object moodAnalyseObject = MoodAnalyserReflector.CreateMoodAnalyse("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers", message);
+                MethodInfo methodInfo = type.GetMethod(methodName);
+                Console.WriteLine("Method Info " + methodInfo);
+                if (methodInfo == null)
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "No such method");
+                }
+                object mood = methodInfo.Invoke(moodAnalyseObject, null);
+                return mood.ToString();
+            }
+            catch (MoodAnalyserException e )
+            {
+                return e.Message;
             }
         }
     }

@@ -8,8 +8,9 @@ namespace MoodAnalyserProblem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome in Mood Analyser Problem");
-     //       object actual = MoodAnalyserFactory.MoodAnalyserParameterizedConstructor("MoodAnalyserProblem.MoodAnalysers", "MoodAnalysers");
-
+            string actual1 = MoodAnalyserReflector.InvokeAnalyseMood("I am happy", "AnalyserMood");
+            string actual = MoodAnalyserReflector.InvokeAnalyseMood("I am happy", "MoodAnalysers");
+            Console.WriteLine("actual" + actual);
         }
     }
 }
